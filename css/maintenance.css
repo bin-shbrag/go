@@ -1,0 +1,30 @@
+.maint{
+  text-align:center;
+  padding: 26px 12px;
+}
+.maint .big{
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+.maint .msg{
+  margin:0 auto;
+  max-width: 48ch;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.countdown{
+  margin-top: 14px;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: .5px;
+  display:none;
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  margin-top: 18px;
+}
+@media(min-width:720px){
+  .contact-grid{grid-template-columns: repeat(2, 1fr);}
+}

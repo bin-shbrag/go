@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>صيانة | Smart Soft</title>
+  <meta name="description" content="النظام في وضع الصيانة.">
+  <meta name="robots" content="noindex,nofollow"/>
+  <link rel="icon" href="./assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="stylesheet" href="./css/maintenance.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <img src="./assets/logo.svg" alt="Smart Soft Company">
+        <div class="title">
+          <b>شركة سمارت سوفت</b>
+          <span>Maintenance Mode</span>
+        </div>
+      </div>
+      <span class="badge off">OFF</span>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="bd maint">
+        <h1 class="big">نحن في صيانة مؤقتة</h1>
+        <p id="msg" class="msg">نقوم حالياً بأعمال صيانة لتحسين الخدمة.</p>
+        <div id="countdown" class="countdown"></div>
+
+        <div class="contact-grid">
+          <a id="contactAi" class="btn primary" href="tel:00967735098666">اتصال AI</a>
+          <a id="contactSupport" class="btn" href="tel:00967770522788">الدعم الفني</a>
+          <a id="contactEmail" class="btn" href="mailto:contact@smart-soft.io">البريد</a>
+          <a id="contactSite" class="btn" href="https://smart-soft.io" target="_blank" rel="noopener">الموقع</a>
+        </div>
+
+        <div style="margin-top:14px" class="small">Developed by Smart Soft Company</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./js/maintenance.js"></script>
+</body>
+</html>

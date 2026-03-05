@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>لوحة التحكم | Smart Soft DSRS</title>
+  <meta name="robots" content="noindex,nofollow"/>
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/admin.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <img src="../assets/logo.svg" alt="Smart Soft Company">
+        <div class="title">
+          <b>لوحة التحكم</b>
+          <span>Dynamic Smart Redirect — Smart Soft</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <span id="statusBadge" class="badge">—</span>
+        <button id="logoutBtn" class="btn ghost" type="button">تسجيل خروج</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="bd">
+        <div id="loginView">
+          <h1 class="h1">تسجيل الدخول</h1>
+          <p class="p">حماية لوحة التحكم عبر كلمة مرور (لا تحفظها في المتصفح العام).</p>
+          <div class="field">
+            <label>كلمة المرور</label>
+            <input id="pw" type="password" placeholder="••••••••" autocomplete="current-password">
+          </div>
+          <button id="loginBtn" class="btn primary" type="button">دخول</button>
+          <p class="small" style="margin-top:10px">Developed by Smart Soft Company</p>
+        </div>
+
+        <div id="appView" style="display:none">
+          <div class="sidebar" style="margin-bottom:12px">
+            <div class="tab active" data-tab="overview">نظرة عامة</div>
+            <div class="tab" data-tab="redirect">إعدادات التحويل</div>
+            <div class="tab" data-tab="links">إدارة الروابط</div>
+            <div class="tab" data-tab="maintenance">الصيانة</div>
+            <div class="tab" data-tab="logs">السجل</div>
+          </div>
+
+          <div id="tab-overview" class="tabpage">
+            <div class="kpi">
+              <div class="box"><b id="kpiStatus">—</b><span>حالة النظام</span></div>
+              <div class="box"><b id="kpiMode">—</b><span>وضع التحويل</span></div>
+              <div class="box"><b id="kpiToday">—</b><span>زيارات اليوم</span></div>
+              <div class="box"><b id="kpiTotal">—</b><span>إجمالي الزيارات</span></div>
+            </div>
+            <div class="hr"></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <button id="toggleBtn" class="btn primary" type="button">تبديل تشغيل/إيقاف</button>
+              <button id="refreshBtn" class="btn" type="button">تحديث البيانات</button>
+            </div>
+          </div>
+
+          <div id="tab-redirect" class="tabpage" style="display:none">
+            <h2 class="h1">إعدادات التحويل</h2>
+            <div class="field">
+              <label>نوع التحويل</label>
+              <select id="redirectMode">
+                <option value="direct">Direct Redirect</option>
+                <option value="multi">Multi Links Page</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>الرابط المباشر (عند اختيار Direct)</label>
+              <input id="directUrl" type="url" placeholder="https://example.com">
+            </div>
+            <button id="saveRedirectBtn" class="btn primary" type="button">حفظ</button>
+          </div>
+
+          <div id="tab-links" class="tabpage" style="display:none">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+              <h2 class="h1" style="margin:0">إدارة الروابط</h2>
+              <button id="addLinkBtn" class="btn primary" type="button">+ إضافة رابط</button>
+            </div>
+            <p class="p">اسحب للتغيير بالترتيب (Drag) ثم احفظ.</p>
+
+            <div style="overflow:auto; margin-top:10px">
+              <table class="table" aria-label="Links Table">
+                <thead>
+                  <tr>
+                    <th style="width:44px">#</th>
+                    <th>العنوان</th>
+                    <th>الرابط</th>
+                    <th>مفعل</th>
+                    <th style="width:180px">إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="linksTbody"></tbody>
+              </table>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+              <button id="saveOrderBtn" class="btn" type="button">حفظ الترتيب</button>
+            </div>
+          </div>
+
+          <div id="tab-maintenance" class="tabpage" style="display:none">
+            <h2 class="h1">صفحة الصيانة</h2>
+            <div class="field">
+              <label>رسالة الصيانة</label>
+              <textarea id="maintMsg" placeholder="نقوم حالياً بأعمال صيانة..."></textarea>
+            </div>
+            <div class="field">
+              <label>عداد تنازلي اختياري (ISO مثل: 2026-03-01T10:00:00Z)</label>
+              <input id="maintCountdown" type="text" placeholder="">
+            </div>
+            <button id="saveMaintBtn" class="btn primary" type="button">حفظ</button>
+          </div>
+
+          <div id="tab-logs" class="tabpage" style="display:none">
+            <h2 class="h1">سجل التعديلات</h2>
+            <p class="p">آخر 50 عملية.</p>
+            <div style="overflow:auto; margin-top:10px">
+              <table class="table" aria-label="Logs Table">
+                <thead>
+                  <tr>
+                    <th>الوقت</th>
+                    <th>العملية</th>
+                    <th>التفاصيل</th>
+                  </tr>
+                </thead>
+                <tbody id="logsTbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="footer">Developed by Smart Soft Company — smart-soft.io</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Link Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="panel">
+      <div class="hd">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+          <b id="modalTitle">رابط</b>
+          <button id="closeModalBtn" class="btn ghost" type="button">إغلاق</button>
+        </div>
+        <div class="hr"></div>
+      </div>
+      <div class="bd">
+        <input type="hidden" id="linkId">
+        <div class="field"><label>العنوان</label><input id="linkTitle" type="text" placeholder="مثال: واتساب"></div>
+        <div class="field"><label>وصف/سطر ثانٍ (اختياري)</label><input id="linkSubtitle" type="text" placeholder=""></div>
+        <div class="field"><label>الرابط</label><input id="linkUrl" type="url" placeholder="https://"></div>
+        <div class="field">
+          <label>مفعل</label>
+          <select id="linkEnabled">
+            <option value="TRUE">نعم</option>
+            <option value="FALSE">لا</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>أيقونة (اختياري) — PNG/JPG/WebP</label>
+          <input id="iconFile" type="file" accept="image/*">
+          <div class="small">سيتم رفعها إلى Google Drive عبر Apps Script وإرجاع رابط مباشر.</div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+          <button id="saveLinkBtn" class="btn primary" type="button">حفظ</button>
+          <button id="deleteLinkBtn" class="btn" type="button" style="border-color:rgba(255,77,109,.35)">حذف</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/admin.js"></script>
+</body>
+</html>
